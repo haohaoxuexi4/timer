@@ -38,7 +38,7 @@ void Timerqueue::handelontime()
         else if(n>0)  //还没到时间
         {
            
-            (*iter)->settime(now);
+            //(*iter)->settime(now);
             iter++;
             
         }

@@ -32,17 +32,27 @@ class Timer
 public:
     Timer(Timercallback callback,uint64_t micros,bool isevery=false):callback_(callback),isRunevery(isevery),time_(Now()+micros*1000)
     {
-        printf("timer init time=%ld\n",time_-Now());
+        printf("timer init time_=%ld\n",time_);
     }
     ~Timer(){};
     
     void run(){callback_();};
     bool isrunevery(){return isRunevery;};
-    int64_t gettime(){return time_;};
-    void  settime(int64_t time){time_=time;};
+    uint64_t gettime(){
+        
+        //printf("gettiem now=%ld\n",Now());
+        return time_;};
+    void  settime(uint64_t time){time_=time;};
+    /*
+    uint64_t Now(){
+        struct timeval tv;
+        gettimeofday(&tv, NULL);
+        int64_t seconds = tv.tv_sec;
+        return seconds * 1000*1000 + tv.tv_usec;};
+     */
 private:
     bool  isRunevery;
-    int64_t time_;
-    //Timerstamp type_;
+    uint64_t time_;
+    
     Timercallback callback_;//回调函数 callback
 };

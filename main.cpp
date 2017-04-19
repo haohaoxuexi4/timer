@@ -25,19 +25,23 @@ int main()
         //Timer tim(&fn,100000*1000,false);
         //timque.add(&tim);
     }
-    Timer tim(&f1,10*1000,false);
+    Timer tim(&f1,2*1000,false);
     timque.add(&tim);
     
-    Timer tim1(&f2,10*1000,false);
+    //sleep(1);
+    Timer tim1(&f2,4*1000,false);
     timque.add(&tim1);
     
-    Timer tim2(&f3,10*1000,false);
+    //sleep(5);
+    Timer tim2(&f3,8*1000,false);
     timque.add(&tim2);
+    
     while (1) {
-        //sleep(1);
         timque.handelontime();
-        
     }
+    
+    
+    
    // timque.handelontime();
     //printf("helloworld\n");
     return 0;
