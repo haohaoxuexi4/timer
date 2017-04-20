@@ -25,15 +25,15 @@ int main()
         //Timer tim(&fn,100000*1000,false);
         //timque.add(&tim);
     }
-    Timer tim(&f1,2*1000,false);
+    Timer tim(&f1,0,false);
     timque.add(&tim);
     
     //sleep(1);
-    Timer tim1(&f2,4*1000,false);
+    Timer tim1(&f2,1*1000,true);
     timque.add(&tim1);
     
     //sleep(5);
-    Timer tim2(&f3,8*1000,false);
+    Timer tim2(&f3,3*1000,false);
     timque.add(&tim2);
     
     while (1) {

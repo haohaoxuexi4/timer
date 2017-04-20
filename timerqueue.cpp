@@ -26,27 +26,29 @@ void Timerqueue::handelontime()
     //printf("now=%ld\n",now);
     for(auto iter=Timervector.begin();iter!=Timervector.end();)
     {
-        uint64_t  n=(now-(*iter)->gettime());
-        
+        long long int  n=(now-(*iter)->gettime());
         
         if ((*iter)->isrunevery()) {
-            //是一直运行的
-            (*iter)->run();
+                                    //always
+            if (n>=0) {
+                (*iter)->run();
+                (*iter)->settime(now+(*iter)->getintervaltime());
+            }
             iter++;
         }
-        //不是一直运行的
-        else if(n>0)  //还没到时间
+                                    //nowt always
+        else
         {
            
-            //(*iter)->settime(now);
-            iter++;
-            
-        }
-        else          //到时间了
-        {
-            printf("now=%ld,itertime=%ld,n=%ld\n",now,(*iter)->gettime(),n);
-            (*iter)->run();
-            Timervector.erase(iter);
+            if (n<0) {              //
+                iter++;
+            }
+            else                    //on tiem
+            {
+                printf("now=%ld,itertime=%ld,n=%ld\n",now,(*iter)->gettime(),n);
+                (*iter)->run();
+                Timervector.erase(iter);
+            }
             
         }
         

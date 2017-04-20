@@ -30,7 +30,7 @@ typedef std::function<void()> Timercallback;
 class Timer
 {
 public:
-    Timer(Timercallback callback,uint64_t micros,bool isevery=false):callback_(callback),isRunevery(isevery),time_(Now()+micros*1000)
+    Timer(Timercallback callback,uint64_t micros,bool isevery=false):callback_(callback),isRunevery(isevery),interval_time(micros*1000),time_(Now()+micros*1000)
     {
         printf("timer init time_=%ld\n",time_);
     }
@@ -38,11 +38,10 @@ public:
     
     void run(){callback_();};
     bool isrunevery(){return isRunevery;};
-    uint64_t gettime(){
-        
-        //printf("gettiem now=%ld\n",Now());
-        return time_;};
+    uint64_t gettime(){return time_;};
     void  settime(uint64_t time){time_=time;};
+    
+    uint64_t getintervaltime(){return interval_time;};
     /*
     uint64_t Now(){
         struct timeval tv;
@@ -53,6 +52,6 @@ public:
 private:
     bool  isRunevery;
     uint64_t time_;
-    
+    uint64_t interval_time;//间隔时间
     Timercallback callback_;//回调函数 callback
 };
