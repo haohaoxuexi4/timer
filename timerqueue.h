@@ -9,10 +9,10 @@ class Timerqueue
 public:
     Timerqueue();
     ~Timerqueue();
-    void add(Timer* timer);
+    void add(Timer& timer);
     //void cancel();
     
     void handelontime();
 private:
-    std::vector<Timer*> Timervector;
+    std::vector<Timer> Timervector;
 };

@@ -18,23 +18,17 @@ void f3()
 int main()
 {
     Timerqueue timque;
-    //利用for 循环 设置10个定时器  5 个运行一次，5个运行到结束
-    Timerstamp time(2*1000*1000);
-    for(int i=0;i<3;i++)
-    {
-        //Timer tim(&fn,100000*1000,false);
-        //timque.add(&tim);
-    }
+    
     Timer tim(&f1,0,false);
-    timque.add(&tim);
+    timque.add(tim);
     
     //sleep(1);
     Timer tim1(&f2,1*1000,true);
-    timque.add(&tim1);
+    timque.add(tim1);
     
     //sleep(5);
     Timer tim2(&f3,3*1000,false);
-    timque.add(&tim2);
+    timque.add(tim2);
     
     while (1) {
         timque.handelontime();

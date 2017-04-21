@@ -9,9 +9,9 @@ Timerqueue::~Timerqueue()
 
 }
 
-void Timerqueue::add(Timer* timer)
+void Timerqueue::add(Timer& timer)
 {
-    assert(timer!=nullptr);
+    //assert(timer!=nullptr);
     Timervector.push_back(timer);
 }
 
@@ -26,13 +26,13 @@ void Timerqueue::handelontime()
     //printf("now=%ld\n",now);
     for(auto iter=Timervector.begin();iter!=Timervector.end();)
     {
-        long long int  n=(now-(*iter)->gettime());
-        
-        if ((*iter)->isrunevery()) {
+        long long int  n=(now-(*iter).gettime());
+    
+        if ((*iter).isrunevery()) {
                                     //always
             if (n>=0) {
-                (*iter)->run();
-                (*iter)->settime(now+(*iter)->getintervaltime());
+                (*iter).run();
+                (*iter).settime(now+(*iter).getintervaltime());
             }
             iter++;
         }
@@ -45,11 +45,11 @@ void Timerqueue::handelontime()
             }
             else                    //on tiem
             {
-                printf("now=%ld,itertime=%ld,n=%ld\n",now,(*iter)->gettime(),n);
-                (*iter)->run();
+                printf("now=%ld,itertime=%ld,n=%ld\n",now,(*iter).gettime(),n);
+                (*iter).run();
                 Timervector.erase(iter);
             }
-            
+        
         }
         
         
